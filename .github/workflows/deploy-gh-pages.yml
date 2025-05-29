@@ -5,7 +5,7 @@ on:
     - cron: '30 21 * * *' # Runs every day at 00:30 EEST (Standard Time)
 
 env:
-  REACT_APP_INITIAL_COUNT: 0 # Default value for the environment variable
+  REACT_APP_INITIAL_COUNT: 0 # Default value
 
 jobs:
   deploy:
@@ -22,11 +22,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Toggle REACT_APP_INITIAL_COUNT environment variable
-        run: |
-          CURRENT_COUNT="${{ env.REACT_APP_INITIAL_COUNT }}"
-          NEW_COUNT=$((1 - CURRENT_COUNT))
-          echo "REACT_APP_INITIAL_COUNT=$NEW_COUNT" >> $GITHUB_ENV
+      - name: Toggle REACT_APP_INITIAL_COUNT using bash script
+        run: ./scripts/update_env.sh
 
       - name: Build React app
         run: npm run build
