@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages Daily
 
 on:
   schedule:
-    - cron: '40 22 * * *' # Runs every day at 00:30 EEST (Standard Time)
+    - cron: '44 22 * * *' # Runs every day at 00:30 EEST (Standard Time)
 
 env:
   REACT_APP_INITIAL_COUNT: 0 # Default value
