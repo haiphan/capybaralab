@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages Daily
+
+on:
+  schedule:
+    - cron: '30 0 * * *' # Runs every day at 00:30 UTC
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Determine and set INITIAL_COUNT environment variable
+        run: |
+          CURRENT_INITIAL_COUNT=$(grep "const DEFAULT_INITIAL_COUNT = " src/App.tsx | awk -F '= ' '{print $2}' | sed 's/;//g')
+          NEW_INITIAL_COUNT=$((1 - CURRENT_INITIAL_COUNT)) # Toggle 0 to 1, 1 to 0
+          echo "REACT_APP_INITIAL_COUNT=$NEW_INITIAL_COUNT" >> $GITHUB_ENV
+          sed -i "s/const DEFAULT_INITIAL_COUNT = $CURRENT_INITIAL_COUNT;/const DEFAULT_INITIAL_COUNT = $NEW_INITIAL_COUNT;/" src/App.tsx
+
+      - name: Build React app
+        run: npm run build
+        env:
+          REACT_APP_INITIAL_COUNT: ${{ env.REACT_APP_INITIAL_COUNT }}
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: build
+          clean: true
