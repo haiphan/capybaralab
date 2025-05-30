@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Get the current value of REACT_APP_INITIAL_COUNT from the environment
-current_count=$(gh variable get INIT_CNT)
+current_count=$(gh variable get INIT_CNT --env github-pages)
 if [ $? -ne 0 ]; then
   echo "Error getting GitHub Variable INIT_CNT. Assuming initial value 0."
   current_count=0
@@ -11,7 +11,7 @@ fi
 new_count=$(( (1 + current_count) % 10 ))
 
 echo "Setting GitHub Variable INIT_CNT to: $new_count"
-gh variable set INIT_CNT "$new_count"
+gh variable set INIT_CNT --body "$new_count" --env github-pages
 
 if [ $? -eq 0 ]; then
   echo "Successfully updated GitHub Variable INIT_CNT."
