@@ -22,8 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Toggle REACT_APP_INITIAL_COUNT using bash script
+      - name: Update REACT_APP_INITIAL_COUNT using bash script
         run: ./scripts/update_env.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build React app
         run: npm run build
