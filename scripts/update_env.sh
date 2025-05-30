@@ -1,25 +1,25 @@
 #!/bin/bash
 
 # Get the current value of REACT_APP_INITIAL_COUNT from the environment
-current_count=$(gh variable get INIT_CNT --env github-pages)
-if [ $? -ne 0 ]; then
-  echo "Error getting GitHub Variable INIT_CNT. Assuming initial value 0."
-  current_count=0
-fi
+count_value=0
+API_URL="https://www.nytimes.com/svc/wordle/v2/2025-05-18.json"
+RESPONSE=$(curl -s "$API_URL")
 
-# Update the count, cycling through 0-9
-new_count=$(( (1 + current_count) % 10 ))
-
-echo "Setting GitHub Variable INIT_CNT to: $new_count"
-gh variable set INIT_CNT --body "$new_count" --env github-pages
-
-if [ $? -eq 0 ]; then
-  echo "Successfully updated GitHub Variable INIT_CNT."
+if [[ -n "$RESPONSE" ]]; then
+  echo "Response received successfully." "${RESPONSE:0:100}" # Print first 100 characters for brevity
+  date_value=$(echo "$RESPONSE" | jq '.print_date' | tr -d '"')
+  for (( i=0; i<${#date_value}; i++ )); do
+    digit="${date_value:i:1}"
+    if [[ "$digit" =~ [0-9] ]]; then
+      count_value=$((count_value + digit))
+    fi
+  done
 else
-  echo "Error setting GitHub Variable INIT_CNT."
+  echo "Failed to fetch data from the API."
 fi
+echo "Count value calculated: $count_value"
 
 # Set the new environment variable for subsequent steps
-echo "REACT_APP_INITIAL_COUNT=$new_count" >> "$GITHUB_ENV"
+echo "REACT_APP_INITIAL_COUNT=$count_value" >> "$GITHUB_ENV"
 
-echo "Updated REACT_APP_INITIAL_COUNT from $current_count to $new_count"
+echo "Updated REACT_APP_INITIAL_COUNT: $count_value"
