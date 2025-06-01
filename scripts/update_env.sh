@@ -23,7 +23,7 @@ get_wordle() {
     local str="$1"
     date_value=$(echo "$str" | jq '.print_date' | tr -d '"')
     solution=$(echo "$str" | jq '.solution' | tr -d '"')
-    echo "Date: $date_value, Solution: $solution"
+    echo "$date_value,$solution"
 }
 
 if [[ -n "$RESPONSE" ]]; then

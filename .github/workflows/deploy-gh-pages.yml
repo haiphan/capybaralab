@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Update REACT_APP_INITIAL_COUNT using bash script
+      - name: Update react env variables
         run: ./scripts/update_env.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
