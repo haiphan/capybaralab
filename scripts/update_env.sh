@@ -38,7 +38,7 @@ echo "Count value calculated: $count_value"
 
 # Set the new environment variable for subsequent steps
 echo "REACT_APP_INITIAL_COUNT=$count_value" >> "$GITHUB_ENV"
-echo "REACT_WORDLE=$wordle" >> "$GITHUB_ENV"
+echo "REACT_APP_WORDLE=$wordle" >> "$GITHUB_ENV"
 
 echo "Updated REACT_APP_INITIAL_COUNT: $count_value"
-echo "Updated REACT_WORDLE: $wordle"
+echo "Updated REACT_APP_WORDLE: $wordle"
