@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
+import Counter from './components/Counter';
+import Wordle from './components/Wordle';
 
-const DEFAULT_INITIAL_COUNT = 0;
-const initialCount = process.env.REACT_APP_INITIAL_COUNT
-    ? parseInt(process.env.REACT_APP_INITIAL_COUNT, 10)
-    : DEFAULT_INITIAL_COUNT;
+const [COUNTER, WORDLE] = [0, 1];
 
 function App() {
-  const [count, setCount] = useState(initialCount);
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
+  const [page, setpage] = useState<number>(COUNTER);
+  const pageComponent = [<Counter/>, <Wordle/>][page];
   return (
     <div className="App">
-      <header className="App-header">
-        <p>Counter: {count}</p>
-        <button onClick={increment}>Increment</button>
-      </header>
+      <div className="App-header">
+        <button onClick={() => setpage(COUNTER)} >Counter App</button>
+        <button onClick={() => setpage(WORDLE)}>Wordle</button>
+        {pageComponent}
+      </div>
     </div>
   );
 }
