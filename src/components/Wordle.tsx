@@ -1,5 +1,5 @@
 const DEFAULT_TXT = 'nodata';
-const text = process.env.REACT_WORDLE ?? DEFAULT_TXT;
+const text = process.env.REACT_APP_WORDLE ?? DEFAULT_TXT;
 
 function Wordle() {
     return (
