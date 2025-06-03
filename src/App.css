@@ -13,6 +13,53 @@
   color: orange;
 }
 
+.visualization-container {
+    width: 400px;
+}
+.visualization-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 12px;
+    gap: 4px;
+}
+
+.label {
+    width: 80px; /* Adjust as needed for label width */
+    text-align: right;
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.bar-container {
+    height: 20px;
+    background-color: #eee;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-right: 10px;
+    flex-grow: 1; /* Allow bar container to take available space */
+    display: flex;
+    align-items: center;
+}
+
+.bar {
+    height: 100%;
+    border-radius: 3px;
+}
+
+.positive {
+    background-color: green;
+}
+
+.negative {
+    background-color: red;
+}
+
+.value {
+    width: 60px; /* Adjust as needed for value width */
+    text-align: left;
+    white-space: nowrap;
+}
 button {
   padding: 10px 20px;
   font-size: 16px;
