@@ -8,8 +8,17 @@ env:
   REACT_APP_INITIAL_COUNT: 0 # Default value
   REACT_APP_WORDLE: 'nodata'
   REACT_APP_ELEC: 'nodata'
+  INIT_COUNT: ${{ vars.REPO_INIT_CNT || 0 }}
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read a variable
+        run: echo "My variable is $INIT_COUNT"
+        env:
+          INIT_COUNT: ${{ env.INIT_COUNT }}
+
   deploy:
     runs-on: ubuntu-latest
     environment: github-pages
@@ -24,10 +33,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-      - name: Read a variable
-        run: echo "My variable is $INIT_CNT"
-        env:
-          INIT_CNT: ${{ vars.INIT_CNT }}
 
       - name: Update react env variables
         run: ./scripts/update_env.sh
