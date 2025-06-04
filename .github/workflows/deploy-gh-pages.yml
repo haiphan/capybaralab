@@ -12,6 +12,7 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: github-pages
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,6 +24,10 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      - name: Read a variable
+        run: echo "My variable is $INIT_CNT"
+        env:
+          INIT_CNT: ${{ vars.INIT_CNT }}
 
       - name: Update react env variables
         run: ./scripts/update_env.sh
