@@ -8,6 +8,7 @@ env:
   REACT_APP_INITIAL_COUNT: 0 # Default value
   REACT_APP_WORDLE: 'nodata'
   REACT_APP_ELEC: 'nodata'
+  REACT_APP_TEMP: 'nodata'
   INIT_COUNT: ${{ vars.REPO_INIT_CNT || 22 }}
 
 jobs:
@@ -44,6 +45,7 @@ jobs:
           REACT_APP_INITIAL_COUNT: ${{ env.REACT_APP_INITIAL_COUNT }}
           REACT_APP_WORDLE: ${{ env.REACT_APP_WORDLE }}
           REACT_APP_ELEC: ${{ env.REACT_APP_ELEC }}
+          REACT_APP_TEMP: ${{ env.REACT_APP_TEMP }}
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4

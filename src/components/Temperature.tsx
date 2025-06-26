@@ -1,6 +1,6 @@
 const DEFAULT_TEMP_DATA = 'nodata';
 
-const dataStr = process.env.REACT_APP_ELEC ?? DEFAULT_TEMP_DATA;
+const dataStr = process.env.REACT_APP_TEMP ?? DEFAULT_TEMP_DATA;
 interface TRow {
     label: string;
     value: number;

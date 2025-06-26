@@ -2,6 +2,7 @@
 
 SCRIPT_DIR="$(dirname "$0")"
 elec_data=$(./$SCRIPT_DIR/getElec.py)
+temp_data=$(./$SCRIPT_DIR/getTemp.py)
 today=$(date +%Y-%m-%d)
 count_value=0
 API_URL="https://www.nytimes.com/svc/wordle/v2/$today.json"
@@ -42,7 +43,9 @@ echo "Count value calculated: $count_value"
 echo "REACT_APP_INITIAL_COUNT=$count_value" >> "$GITHUB_ENV"
 echo "REACT_APP_WORDLE=$wordle" >> "$GITHUB_ENV"
 echo "REACT_APP_ELEC=$elec_data" >> "$GITHUB_ENV"
+echo "REACT_APP_TEMP=$temp_data" >> "$GITHUB_ENV"
 
 echo "Updated REACT_APP_INITIAL_COUNT: $count_value"
 echo "Updated REACT_APP_WORDLE: $wordle"
 echo "Updated REACT_APP_ELEC: $elec_data"
+echo "Updated REACT_APP_TEMP: $temp_data"
