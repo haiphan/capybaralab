@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/capybaralab/static/css/main.c98a772e.css",
-    "main.js": "/capybaralab/static/js/main.7f0035d8.js",
+    "main.js": "/capybaralab/static/js/main.3dba7e96.js",
     "static/js/453.825c4d3b.chunk.js": "/capybaralab/static/js/453.825c4d3b.chunk.js",
     "index.html": "/capybaralab/index.html",
     "main.c98a772e.css.map": "/capybaralab/static/css/main.c98a772e.css.map",
-    "main.7f0035d8.js.map": "/capybaralab/static/js/main.7f0035d8.js.map",
+    "main.3dba7e96.js.map": "/capybaralab/static/js/main.3dba7e96.js.map",
     "453.825c4d3b.chunk.js.map": "/capybaralab/static/js/453.825c4d3b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c98a772e.css",
-    "static/js/main.7f0035d8.js"
+    "static/js/main.3dba7e96.js"
   ]
 }
